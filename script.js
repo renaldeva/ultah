@@ -11,8 +11,8 @@ const kodeRahasia = "2309";
 //    Format: "tahun-bulan-tanggalTjam:menit:detik+zona"
 //    Zona waktu: +07:00 = WIB, +08:00 = WITA, +09:00 = WIT.
 //    Kosongkan ("") kalau mau halaman langsung bisa dibuka kapan saja.
-// const waktuBuka = "2026-09-23T00:00:00+07:00";
-const waktuBuka = "2026-09-20T23:10:00+07:00";
+const waktuBuka = "2026-09-23T00:00:00+07:00";
+// const waktuBuka = "2026-09-20T23:10:00+07:00";
 const meetDate = "";
 
 
