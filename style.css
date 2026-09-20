@@ -1,0 +1,681 @@
+/* ===== Warna (tema coklat) — ganti di sini kalau mau ubah suasana ===== */
+:root {
+  --espresso: #231612;   /* latar utama */
+  --roast:    #33211a;   /* latar kotak */
+  --mocha:    #6b4a3a;
+  --caramel:  #c68a5c;   /* aksen utama */
+  --gold:     #e6b97a;   /* aksen terang */
+  --latte:    #e8d5bd;
+  --cream:    #f6ecdc;   /* teks utama */
+  --muted:    #bda791;   /* teks redup */
+  --ink:      #3a2a22;   /* teks di atas kertas surat */
+}
+
+/* Supaya atribut hidden selalu menyembunyikan elemen */
+[hidden] {
+  display: none !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  background:
+    radial-gradient(60rem 28rem at 50% -8%, rgba(198, 138, 92, 0.16), transparent 65%),
+    var(--espresso);
+  background-attachment: fixed;
+  color: var(--cream);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* Halaman tidak bisa di-scroll sebelum kode benar */
+body.locked {
+  overflow: hidden;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: clamp(2rem, 6vw, 2.75rem);
+  margin-bottom: 0.75rem;
+}
+
+section {
+  padding: 6rem 1.5rem;
+}
+
+.wrap {
+  max-width: 38rem;
+  margin: 0 auto;
+}
+
+.lead {
+  color: var(--muted);
+  margin-bottom: 2rem;
+}
+
+/* ===== Tombol ===== */
+.btn {
+  display: inline-block;
+  background: var(--caramel);
+  color: var(--espresso);
+  border: 1px solid var(--caramel);
+  border-radius: 999px;
+  padding: 0.8rem 1.6rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(1.1);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--cream);
+  border-color: rgba(246, 236, 220, 0.35);
+}
+
+.btn:focus-visible,
+.music-btn:focus-visible,
+.photo:focus-visible,
+.lightbox-close:focus-visible,
+.links a:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* ===== Kode rahasia ===== */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(40rem 24rem at 50% 30%, rgba(198, 138, 92, 0.2), transparent 70%),
+    var(--espresso);
+  transition: opacity 0.9s ease;
+}
+
+.gate.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gate-card {
+  width: 100%;
+  max-width: 22rem;
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  background: rgba(51, 33, 26, 0.7);
+  border: 1px solid rgba(232, 213, 189, 0.2);
+  border-radius: 22px;
+}
+
+.gate-label {
+  color: var(--caramel);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.gate-card h2 {
+  font-size: 2rem;
+}
+
+.gate-sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.code {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 1.75rem 0 1rem;
+}
+
+.code input {
+  width: 3.2rem;
+  height: 3.6rem;
+  text-align: center;
+  font-family: inherit;
+  font-size: 1.5rem;
+  color: var(--cream);
+  background: var(--espresso);
+  border: 1px solid rgba(232, 213, 189, 0.3);
+  border-radius: 12px;
+}
+
+.code input:focus {
+  outline: 2px solid var(--caramel);
+  outline-offset: 2px;
+}
+
+.code.shake {
+  animation: shake 0.4s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25%      { transform: translateX(-8px); }
+  75%      { transform: translateX(8px); }
+}
+
+.gate-error {
+  color: #eeae93;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.wait-countdown {
+  margin-top: 1.5rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+/* ===== Tombol musik ===== */
+.music-btn {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 15;
+  background: rgba(35, 22, 18, 0.8);
+  color: var(--cream);
+  border: 1px solid rgba(232, 213, 189, 0.3);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  font-family: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+/* ===== Garis kemajuan scroll ===== */
+.progress {
+  position: fixed;
+  right: 0.9rem;
+  top: 50%;
+  z-index: 15;
+  width: 2px;
+  height: 30vh;
+  transform: translateY(-50%);
+  background: rgba(232, 213, 189, 0.15);
+}
+
+#progressFill {
+  width: 100%;
+  height: 0;
+  background: linear-gradient(to bottom, var(--caramel), var(--gold));
+}
+
+/* ===== Navigasi ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.85rem 1.25rem;
+  background: rgba(35, 22, 18, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(232, 213, 189, 0.12);
+}
+
+.brand {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cream);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.links {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.links::-webkit-scrollbar {
+  display: none;
+}
+
+.links a {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  padding: 0.15rem 0;
+  border-bottom: 2px solid transparent;
+}
+
+.links a.active {
+  color: var(--cream);
+  border-bottom-color: var(--caramel);
+}
+
+@media (max-width: 640px) {
+  .brand { display: none; }
+}
+
+/* ===== Awal (hero) ===== */
+.hero {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: 6rem;
+  position: relative;
+}
+
+.hero-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 8.3vw, 5.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+}
+
+/* Nama di baris kedua: miring dengan warna karamel ke emas */
+.hero h1 em {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  background: linear-gradient(90deg, var(--latte), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  max-width: 28rem;
+  margin: 1.75rem auto 2.25rem;
+  color: var(--latte);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 1.75rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* ===== Muncul saat di-scroll ===== */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ===== Kenangan ===== */
+.timeline {
+  border-left: 1px solid rgba(232, 213, 189, 0.25);
+  padding-left: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.memory {
+  position: relative;
+  padding-bottom: 2.25rem;
+}
+
+.memory:last-child {
+  padding-bottom: 0;
+}
+
+.memory::before {
+  content: "";
+  position: absolute;
+  left: calc(-1.5rem - 4px);
+  top: 0.6rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--caramel);
+}
+
+.memory time {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.memory h3 {
+  font-size: 1.6rem;
+  margin: 0.15rem 0 0.35rem;
+}
+
+.memory p {
+  color: var(--latte);
+}
+
+/* ===== Galeri ===== */
+.gallery-section {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.gallery-section .wrap {
+  padding: 0 1.5rem;
+}
+
+.gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 0.5rem 1.5rem 1.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--mocha) transparent;
+}
+
+.photo {
+  position: relative;
+  flex: 0 0 15rem;
+  aspect-ratio: 3 / 4;
+  padding: 0;
+  border: none;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--roast);
+  cursor: pointer;
+  scroll-snap-align: center;
+}
+
+/* Filter hangat supaya semua foto terasa satu nuansa coklat */
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: sepia(0.4) saturate(0.9) brightness(0.92);
+  transition: transform 0.6s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.04);
+}
+
+.photo span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 3rem 0.9rem 0.9rem;
+  text-align: left;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  color: var(--cream);
+  background: linear-gradient(to top, rgba(35, 22, 18, 0.92), rgba(35, 22, 18, 0));
+}
+
+/* ===== Foto besar ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(20, 12, 9, 0.95);
+}
+
+.lightbox figure {
+  text-align: center;
+}
+
+.lightbox img {
+  max-width: 92vw;
+  max-height: 72vh;
+  border-radius: 10px;
+}
+
+.lightbox figcaption {
+  max-width: 28rem;
+  margin: 1rem auto 0;
+  color: var(--latte);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  color: var(--cream);
+  font-size: 2.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ===== Surat ===== */
+.paper {
+  margin-top: 2rem;
+  padding: 2.25rem 1.75rem;
+  background: var(--cream);
+  color: var(--ink);
+  border-radius: 6px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-weight: 500;
+  font-size: 1.35rem;
+  line-height: 1.65;
+}
+
+.paper:focus {
+  outline: none;
+}
+
+.paper p {
+  margin-bottom: 1.1rem;
+  opacity: 0;
+}
+
+.paper p:last-child {
+  margin-bottom: 0;
+}
+
+/* Paragraf muncul satu per satu (jeda diatur di script.js) */
+.paper.show p {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.sign {
+  font-style: italic;
+  color: #8a5a3a;
+}
+
+/* ===== Harapan ===== */
+.wishes {
+  list-style: none;
+  margin-top: 1.5rem;
+}
+
+.wishes li {
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(232, 213, 189, 0.15);
+  color: var(--latte);
+}
+
+.wishes li:first-child {
+  padding-top: 0;
+}
+
+.wishes li:last-child {
+  border-bottom: none;
+}
+
+.wishes strong {
+  display: block;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--cream);
+}
+
+.countdown {
+  margin-top: 2.5rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  color: var(--gold);
+}
+
+/* ===== Kue dan lilin ===== */
+.cake-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 7rem;
+}
+
+.cake-section .wrap {
+  width: 100%;
+}
+
+.cake {
+  display: block;
+  width: 17rem;
+  max-width: 80%;
+  margin: 1rem auto 2rem;
+  overflow: visible;
+}
+
+.cake .wick {
+  stroke: #3a2a22;
+  stroke-width: 2;
+}
+
+.cake .flame {
+  transform-origin: 150px 94px;
+  filter: drop-shadow(0 0 12px rgba(246, 198, 103, 0.9));
+  animation: flicker 2.2s ease-in-out infinite;
+  transition: opacity 0.5s ease;
+}
+
+.cake .flame-outer { fill: #f6c667; }
+.cake .flame-inner { fill: #fff3d0; }
+
+.cake .smoke {
+  fill: none;
+  stroke: var(--latte);
+  stroke-width: 2;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+/* Setelah lilin ditiup */
+.cake.off .flame {
+  opacity: 0;
+  animation: none;
+}
+
+.cake.off .smoke {
+  animation: smoke 2.4s ease-out forwards;
+}
+
+@keyframes flicker {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); }
+  35%      { transform: scale(0.96, 1.04) rotate(-1.5deg); }
+  70%      { transform: scale(1.03, 0.97) rotate(1.5deg); }
+}
+
+@keyframes smoke {
+  0%   { opacity: 0.7; transform: translateY(0); }
+  100% { opacity: 0;   transform: translateY(-22px); }
+}
+
+.cake-actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.wish {
+  margin-top: 1.75rem;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  color: var(--gold);
+}
+
+/* ===== Confetti setelah lilin ditiup ===== */
+.confetti {
+  position: fixed;
+  top: -14px;
+  z-index: 50;
+  width: 8px;
+  height: 14px;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(720deg); }
+}
+
+/* ===== Untuk yang mematikan animasi di perangkatnya ===== */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .paper p { opacity: 1; }
+  .paper.show p { animation: none; }
+  .cake .flame { animation: none; }
+  .cake.off .smoke { animation: none; }
+  .photo img { transition: none; }
+}

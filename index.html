@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Selamat ulang tahun, Khalisah Septiany Sa'adah</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="locked">
+
+  <!-- Lagu latar. Taruh file lagunya di folder ini dengan nama lagu.mp3 -->
+  <audio id="musik" src="lagu.mp3" loop preload="auto"></audio>
+
+  <!-- ===== LAYAR TUNGGU =====
+       Tampil kalau belum waktunya. Waktu bukanya diatur di script.js (waktuBuka). -->
+  <div id="waiting" class="gate" hidden>
+    <div class="gate-card">
+      <p class="gate-label">Belum waktunya</p>
+      <h2>Sabar dulu ya</h2>
+      <p id="waitInfo" class="gate-sub"></p>
+      <p id="waitCountdown" class="wait-countdown" aria-live="off"></p>
+    </div>
+  </div>
+
+  <!-- ===== KODE RAHASIA =====
+       Kodenya diatur di script.js (kodeRahasia). Lagu mulai jalan setelah kode benar. -->
+  <div id="gate" class="gate">
+    <div class="gate-card">
+      <p class="gate-label">Khusus buat kamu</p>
+      <h2>Masukkan kode rahasia</h2>
+      <p class="gate-sub">Ada sesuatu yang sudah menunggu di baliknya. Petunjuk: tanggal dan bulan lahirmu, 4 angka.</p>
+
+      <div id="code" class="code">
+        <input type="tel" inputmode="numeric" maxlength="1" aria-label="Angka pertama" autocomplete="off">
+        <input type="tel" inputmode="numeric" maxlength="1" aria-label="Angka kedua" autocomplete="off">
+        <input type="tel" inputmode="numeric" maxlength="1" aria-label="Angka ketiga" autocomplete="off">
+        <input type="tel" inputmode="numeric" maxlength="1" aria-label="Angka keempat" autocomplete="off">
+      </div>
+
+      <p id="gateError" class="gate-error" hidden>Kodenya belum pas. Coba lagi ya.</p>
+      <button id="unlockBtn" class="btn" type="button">Buka</button>
+    </div>
+  </div>
+
+  <!-- Tombol musik (muncul setelah kode benar) -->
+  <button id="musicBtn" class="music-btn" type="button" hidden>Musik: nyala</button>
+
+  <!-- Garis kemajuan scroll di sisi kanan -->
+  <div class="progress" aria-hidden="true"><div id="progressFill"></div></div>
+
+  <!-- ===== NAVIGASI ===== -->
+  <nav class="nav">
+    <a href="#awal" class="brand">Untuk Khalisah Septiany Sa'adah</a>
+    <div class="links">
+      <a href="#awal" class="active">Awal</a>
+      <a href="#kenangan">Kenangan</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#surat">Surat</a>
+      <a href="#harapan">Harapan</a>
+      <a href="#lilin">Lilin</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ===== 1. AWAL ===== -->
+    <section id="awal" class="hero">
+      <p class="hero-label">Ada surat yang sudah lama menunggu hari ini.</p>
+      <h1>Selamat Ulang Tahun, <em>Khalisah Septiany Sa'adah</em></h1>
+      <p class="hero-sub">Scroll pelan-pelan ya cantikkk. Ada beberapa hal yang mau aku tunjukin, karena tahun ini aku nggak bisa ngucapin secara langsung.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#kenangan">Mulai dari awal</a>
+        <a class="btn ghost" href="#surat">Langsung ke suratnya</a>
+      </div>
+      <p class="scroll-hint">Scroll ke bawah</p>
+    </section>
+
+    <!-- ===== 2. KENANGAN ===== -->
+    <section id="kenangan">
+      <div class="wrap reveal">
+        <h2>Kenangan kita</h2>
+        <p class="lead">Beberapa hal yang masih aku ingat.</p>
+
+        <!-- GANTI dengan kejadian nyata kalian. Tambah/kurangi blok <article> sesukamu. -->
+        <div class="timeline">
+          <article class="memory">
+            <time>25 Februari 2026</time>
+            <h3>Pertama kali DM kamu</h3>
+            <p>Waktu itu aku beraniin diri buat DM kamu dengan alasan minta maaf, padahal aku sengaja biar bisa interaksi sama kamu.</p>
+          </article>
+          <article class="memory">
+            <time>10 Maret 2026</time>
+            <h3>Waktu kita resmi jadian</h3>
+            <p>Waktu itu aku beraniin diri buat memperjelas hubungan ini sebelum kamu sidang, dan ternyata kamu mau nerima aku walaupun habis itu aku ditinggal 1 hari karena kamu fokus mau sidang.</p>
+          </article>
+          <article class="memory">
+            <time>23 Agustus 2026</time>
+            <h3>Waktu kita mulai LDR</h3>
+            <p>Jujur aku waktu itu pura-pura kuat di depan semua orang dan kamu tau kan ketika aku sudah sendirian jadinya gimana, serasa ada sesuatu yang hilang tapi aku ngga tau itu apa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 3. GALERI ===== -->
+    <section id="galeri" class="gallery-section">
+      <div class="wrap reveal">
+        <h2>Beberapa foto kamu dan kita biar keliatan romance hehehe</h2>
+        <p class="lead">Ketuk foto untuk melihat lebih dekat. Geser ke samping untuk foto berikutnya.</p>
+      </div>
+
+      <!-- GANTI foto di folder foto/ dan tulisannya. Tambah foto = salin satu blok <button>. -->
+      <div class="gallery">
+        <button class="photo" type="button">
+          <img src="foto/1.jpeg" alt="Foto 1">
+          <span>Foto bisa dibilang awal keseriusan hubungan kita, dimulai dari kava.</span>
+        </button>
+        <button class="photo" type="button">
+          <img src="foto/2.jpeg" alt="Foto 2">
+          <span>Ngga tau kenapa difoto ini kamu keliatan cantik bangettt.</span>
+        </button>
+        <button class="photo" type="button">
+          <img src="foto/3.jpeg" alt="Foto 3">
+          <span>Foto pertama kali kita go public ini berkesan banget buat akuu.</span>
+        </button>
+        <button class="photo" type="button">
+          <img src="foto/4.jpeg" alt="Foto 4">
+          <span>Foto ini ngewakilin kalo kamu suda kasih pap pose jempol andalan bapak-bapakk, tapii tetep lucyuu dan cantikkk.</span>
+        </button>
+        <button class="photo" type="button">
+          <img src="foto/5.jpeg" alt="Foto 5">
+          <span>Love is well ini menurutku kita keren banget sih, apalagi momentnya jadi pengen jalan-jalan sama kamu lagiii.</span>
+        </button>
+        <button class="photo" type="button">
+          <img src="foto/6.jpeg" alt="Foto 6">
+          <span>Foto ini seperti aku ngeliat gimana aku bisa tertarik sama kamu, kamu tu cantik banget walaupun lagi kerjaaa arghhh.</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===== 4. SURAT ===== -->
+    <section id="surat">
+      <div class="wrap reveal">
+        <h2>Surat</h2>
+        <button id="openLetter" class="btn" type="button">Buka suratnya</button>
+
+        <article id="letter" class="paper" hidden>
+          <!-- GANTI dengan kata-katamu sendiri. Tiap <p> = satu paragraf. -->
+          <p>Hai, Cantikkk.</p>
+          <p>Sebelumnya maaf ya cantik aku nggak jago nulis yang manis-manis, jadi aku tulis apa adanya dan semoga kamu suka.</p>
+          <p>Aku minta maaf ya ngga bisa ngerayain langsung bareng kamu sayang. Itu bagian yang paling bikin aku kesel sama jarak. Tapi aku mau kamu tahu, aku masih di sini dan nggak ke mana-mana.</p>
+          <p>Makasih udah sabar, udah percaya, dan udah tetap cerita walau kadang kita sama-sama sibuk dengan pekerjaan masing-masing.</p>
+          <p>Selamat ulang tahun cantikk. Aku berdoa semoga semua tersemogakan buat kamu ya cantikk</p>
+          <p class="sign">Berondongmu</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== 5. HARAPAN ===== -->
+    <section id="harapan">
+      <div class="wrap reveal">
+        <h2>Harapanku buat kamu</h2>
+
+        <!-- GANTI sesuai kondisi dia -->
+        <ul class="wishes">
+          <li>
+            <strong>Dilancarkan trainingnya.</strong>
+            Aku harap kamu bisa lolos training agar kamu ngga kesusahan nyari loker ke depannya karena tu pasti cape banget sayang.
+          </li>
+          <li>
+            <strong>Diberi kelancaran rezeki dan kesehatan.</strong>
+            Aku berharap semua rahmat kamu dapatkan ke depannya baik dari materi maupun kesehatan rohani ataupun fisik.
+          </li>
+          <li>
+            <strong>Dikelilingi orang yang baik.</strong>
+            Dan aku mau tetap jadi salah satunya.
+          </li>
+          <li>
+            <strong>Kita ketemu secepatnya.</strong>
+            Itu harapan terbesar aku.
+          </li>
+        </ul>
+
+        <!-- Hitung mundur (opsional). Tanggalnya diatur di script.js -->
+        <p id="countdownText" class="countdown" hidden></p>
+      </div>
+    </section>
+
+    <!-- ===== 6. KUE DAN LILIN ===== -->
+    <section id="lilin" class="cake-section">
+      <div class="wrap reveal">
+        <h2>Satu lagi.</h2>
+        <p class="lead">Bikin permintaan dulu, baru tiup lilinnya.</p>
+
+        <svg id="cake" class="cake" viewBox="0 30 300 290" aria-hidden="true">
+          <!-- piring -->
+          <ellipse cx="150" cy="296" rx="135" ry="16" fill="#e8d5bd" />
+          <ellipse cx="150" cy="292" rx="112" ry="10" fill="#f6ecdc" />
+
+          <!-- tingkat bawah -->
+          <rect x="50" y="196" width="200" height="92" rx="12" fill="#4a2f24" />
+          <rect x="50" y="196" width="200" height="16" rx="8" fill="#f0dfc6" />
+          <rect x="66"  y="206" width="14" height="26" rx="7" fill="#f0dfc6" />
+          <rect x="110" y="206" width="14" height="18" rx="7" fill="#f0dfc6" />
+          <rect x="170" y="206" width="14" height="30" rx="7" fill="#f0dfc6" />
+          <rect x="214" y="206" width="14" height="20" rx="7" fill="#f0dfc6" />
+          <circle cx="80"  cy="266" r="4" fill="#c68a5c" />
+          <circle cx="115" cy="272" r="4" fill="#c68a5c" />
+          <circle cx="150" cy="266" r="4" fill="#c68a5c" />
+          <circle cx="185" cy="272" r="4" fill="#c68a5c" />
+          <circle cx="220" cy="266" r="4" fill="#c68a5c" />
+
+          <!-- tingkat atas -->
+          <rect x="86" y="140" width="128" height="60" rx="10" fill="#5c3a2c" />
+          <rect x="86" y="140" width="128" height="14" rx="7" fill="#f0dfc6" />
+          <rect x="102" y="148" width="12" height="22" rx="6" fill="#f0dfc6" />
+          <rect x="150" y="148" width="12" height="15" rx="6" fill="#f0dfc6" />
+          <rect x="190" y="148" width="12" height="26" rx="6" fill="#f0dfc6" />
+
+          <!-- lilin di atas kue -->
+          <rect x="143" y="100" width="14" height="42" rx="2" fill="#e8d5bd" />
+          <rect x="143" y="110" width="14" height="4" fill="#c68a5c" />
+          <rect x="143" y="122" width="14" height="4" fill="#c68a5c" />
+          <rect x="143" y="134" width="14" height="4" fill="#c68a5c" />
+          <line class="wick" x1="150" y1="92" x2="150" y2="100" />
+
+          <!-- api dan asap -->
+          <g class="flame">
+            <path class="flame-outer" d="M150 52 C161 66 163 82 150 94 C137 82 139 66 150 52 Z" />
+            <path class="flame-inner" d="M150 70 C156 78 156 86 150 92 C144 86 144 78 150 70 Z" />
+          </g>
+          <path class="smoke" d="M150 88 C142 70 158 60 150 40" />
+        </svg>
+
+        <div class="cake-actions">
+          <button id="blowBtn" class="btn" type="button">Tiup lilin</button>
+          <button id="relightBtn" class="btn ghost" type="button" hidden>Nyalakan lagi</button>
+        </div>
+
+        <!-- GANTI kalimat penutup ini -->
+        <p id="wishText" class="wish" hidden>Yeayyy, selamat ulang tahun sayangku cantikkk🤎🤎.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Tampilan foto besar -->
+  <div id="lightbox" class="lightbox" hidden>
+    <button id="lightboxClose" class="lightbox-close" type="button" aria-label="Tutup">&times;</button>
+    <figure>
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption"></figcaption>
+    </figure>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
